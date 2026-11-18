@@ -13,6 +13,12 @@
 # limitations under the License.
 
 # Import model providers for easy access
+from megatron.bridge.models.apertus import ApertusBridge
+from megatron.bridge.models.apertus1p5 import APERTUS1P5_AVAILABLE
+
+
+if APERTUS1P5_AVAILABLE:
+    from megatron.bridge.models.apertus1p5 import Apertus1p5Bridge
 from megatron.bridge.models.apertus2 import (
     Apertus2Bridge,
     Apertus2ModelBuilder,
@@ -225,6 +231,7 @@ __all__ = [
     "ReplicatedMapping",
     "RowParallelMapping",
     "AutoMapping",
+    "ApertusBridge",
     "BailingMoeV2Bridge",
     # Apertus Models
     "Apertus2Bridge",
@@ -345,6 +352,8 @@ __all__ = [
     "ExaoneMoeModelProvider",
 ]
 
+if APERTUS1P5_AVAILABLE:
+    __all__.append("Apertus1p5Bridge")
 if DEEPSEEK_AVAILABLE:
     __all__.extend(("DeepSeekV2Bridge", "DeepSeekV3Bridge"))
 if NEMOTRON_OMNI_AVAILABLE:
